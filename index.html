@@ -15,19 +15,6 @@
 <meta name="application-name" content="RexDex">
 <meta name="msapplication-TileColor" content="#16161a">
 <meta name="msapplication-navbutton-color" content="#16161a">
-<meta property="og:type" content="website">
-<meta property="og:title" content="RexDex">
-<meta property="og:description" content="ARK Creature Index for all story islands. Search dinos, view stats, diets, tame methods, and abilities.">
-<meta property="og:url" content="https://yourusername.github.io/rexdex/">
-<meta property="og:image" content="https://yourusername.github.io/rexdex/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:site_name" content="RexDex">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="RexDex">
-<meta name="twitter:description" content="ARK Creature Index for all story islands.">
-<meta name="twitter:image" content="https://yourusername.github.io/rexdex/og-image.png">
-<link rel="canonical" href="https://yourusername.github.io/rexdex/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
@@ -46,9 +33,9 @@
     --primary: #e8a020;
     --primary-glow: rgba(232,160,32,0.15);
     --accent2: #3ab8c8;
-    --accent3: #c84040;
+    --accent3: #ff6464;
     --green: #3aaa60;
-    --purple: #8855cc;
+    --purple: #b48cff;
     --white: #e8f0f4;
   }
 
@@ -85,15 +72,36 @@
     font-family: 'Lato', 'Source Sans 3', sans-serif;
   }
 
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--primary);
+    color: #16161a;
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 0 0 8px 0;
+    z-index: 10000;
+    text-decoration: none;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 0;
+    position: fixed;
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+  }
+
   .container {
     max-width: 700px;
     margin: 0 auto;
-    padding: 24px 16px;
+    padding: 20px 14px;
     contain: layout style paint;
   }
 
   header {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     text-align: center;
   }
 
@@ -105,10 +113,12 @@
     color: var(--primary);
   }
 
-  header p {
+  header h2 {
     color: var(--text-secondary);
     margin: 0 0 20px 0;
     font-size: 16px;
+    font-weight: 400;
+    font-family: inherit;
   }
 
   .controls-wrapper {
@@ -123,11 +133,12 @@
   .search-input {
     flex: 1;
     min-width: 200px;
+    min-height: 44px;
     background: var(--surface-soft);
     border: 1px solid var(--border-chill);
     color: var(--text);
-    padding: 14px 22px;
-    border-radius: 24px;
+    padding: 10px 18px;
+    border-radius: 22px;
     font-size: 15px;
     font-family: inherit;
     outline: none;
@@ -146,8 +157,8 @@
     background: var(--surface-soft);
     color: var(--text);
     border: 1px solid var(--border-chill);
-    padding: 14px 24px;
-    border-radius: 24px;
+    padding: 10px 20px;
+    border-radius: 22px;
     cursor: pointer;
     font-size: 15px;
     font-weight: 600;
@@ -158,6 +169,8 @@
     justify-content: center;
     gap: 8px;
     white-space: nowrap;
+    min-height: 44px;
+    min-width: 44px;
   }
 
   .btn:hover:not(:disabled) { background: rgba(255,255,255,0.06); }
@@ -184,28 +197,33 @@
 
   #tabsHeader {
     display: flex;
-    gap: 10px;
-    margin-bottom: 28px;
+    gap: 6px;
+    margin-bottom: 16px;
     overflow-x: auto;
     padding: 4px 0;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
     justify-content: flex-start;
-    touch-action: pan-x;
   }
   #tabsHeader::-webkit-scrollbar { display: none; }
 
   .tab-button {
-    padding: 10px 18px;
+    padding: 8px 14px;
     background: var(--surface-soft);
     border: 1px solid var(--border-chill);
-    border-radius: 20px;
+    border-radius: 16px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
     font-family: inherit;
     color: var(--text-secondary);
     font-weight: 500;
     white-space: nowrap;
     transition: all 0.2s ease;
+    min-height: 36px;
+    line-height: 1;
+    flex-shrink: 0;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   .tab-button.active {
@@ -222,16 +240,153 @@
   .tab-content { display: none; }
   .tab-content.active { display: block; }
 
+  .filter-panel {
+    margin-bottom: 16px;
+    background: var(--surface-soft);
+    border: 1px solid var(--border-chill);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .filter-panel summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-family: inherit;
+    list-style: none;
+    min-height: 44px;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: background 0.15s ease;
+  }
+
+  .filter-panel summary::-webkit-details-marker { display: none; }
+
+  .filter-panel summary:hover {
+    background: rgba(255,255,255,0.05);
+  }
+
+  .filter-panel summary:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: -2px;
+  }
+
+  .filter-panel summary .summary-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .filter-panel summary .summary-label svg {
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .filter-panel summary .summary-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+  .filter-panel summary .summary-icon svg {
+    display: block;
+  }
+
+  .filter-panel[open] summary .summary-icon {
+    transform: rotate(180deg);
+  }
+
+  .filter-panel .filter-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px 16px 16px;
+  }
+
+  .filter-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-height: 28px;
+  }
+
+  .filter-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    min-width: 42px;
+    flex-shrink: 0;
+    line-height: 28px;
+  }
+
+  .filter-chip {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    min-height: 28px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .filter-chip:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.18);
+    color: var(--text);
+  }
+
+  .filter-chip:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .filter-chip[aria-pressed="true"] {
+    background: var(--primary);
+    color: #16161a;
+    border-color: var(--primary);
+    font-weight: 600;
+  }
+  .filter-chip[aria-pressed="true"]:hover {
+    background: #d99010;
+    border-color: #d99010;
+  }
+
   .dino-list {
     display: flex;
     flex-direction: column;
   }
 
   .dino-item {
-    padding: 20px 0;
+    padding: 16px 0;
     border-bottom: 1px solid var(--border-chill);
     cursor: pointer;
     transition: opacity 0.2s ease;
+    min-height: 48px;
   }
 
   .dino-item:last-child { border-bottom: none; }
@@ -271,15 +426,15 @@
   }
 
   .tag-herb { background: rgba(58,170,96,0.15); color: var(--green); border: 1px solid rgba(58,170,96,0.3); }
-  .tag-carn { background: rgba(200,64,64,0.15); color: var(--accent3); border: 1px solid rgba(200,64,64,0.3); }
-  .tag-omni { background: rgba(136,85,204,0.15); color: var(--purple); border: 1px solid rgba(136,85,204,0.3); }
+  .tag-carn { background: rgba(255,100,100,0.15); color: var(--accent3); border: 1px solid rgba(255,100,100,0.3); }
+  .tag-omni { background: rgba(180,140,255,0.15); color: var(--purple); border: 1px solid rgba(180,140,255,0.3); }
   .tag-passive { background: rgba(58,184,200,0.15); color: var(--accent2); border: 1px solid rgba(58,184,200,0.3); }
   .tag-ko { background: rgba(232,160,32,0.15); color: var(--primary); border: 1px solid rgba(232,160,32,0.3); }
   .tag-ride { background: rgba(200,200,200,0.1); color: var(--white); border: 1px solid rgba(200,200,200,0.2); }
   .tag-noride { background: rgba(90,106,116,0.15); color: var(--text-muted); border: 1px solid rgba(90,106,116,0.3); }
   .tag-info { background: rgba(232,160,32,0.15); color: var(--primary); border: 1px solid rgba(232,160,32,0.3); }
   .tag-mineral { background: rgba(58,184,200,0.15); color: var(--accent2); border: 1px solid rgba(58,184,200,0.3); }
-  .tag-special { background: rgba(136,85,204,0.15); color: var(--purple); border: 1px solid rgba(136,85,204,0.3); }
+  .tag-special { background: rgba(180,140,255,0.15); color: var(--purple); border: 1px solid rgba(180,140,255,0.3); }
 
   .detail-view {
     display: none;
@@ -305,23 +460,55 @@
     background: var(--surface-soft);
     border: 1px solid var(--border-chill);
     color: var(--text-secondary);
-    padding: 10px 18px;
-    border-radius: 20px;
+    padding: 8px 14px;
+    border-radius: 16px;
     cursor: pointer;
     font-family: inherit;
     font-size: 14px;
     font-weight: 600;
     transition: all 0.2s ease;
+    min-height: 40px;
+    min-width: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
   }
 
   .detail-back:hover { background: rgba(255,255,255,0.06); color: var(--white); }
+  .detail-back:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+  .detail-star {
+    background: var(--surface-soft);
+    border: 1px solid var(--border-chill);
+    color: var(--primary);
+    padding: 8px 12px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    min-width: 40px;
+  }
+  .detail-star:hover { background: rgba(255,255,255,0.06); }
+  .detail-star:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 
   .hero-name {
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.03em;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     color: var(--primary);
+  }
+  @media (min-width: 480px) {
+    .hero-name { font-size: 48px; letter-spacing: -0.03em; }
   }
 
   .hero-meta {
@@ -336,7 +523,7 @@
   }
 
   .block {
-    padding: 28px 0;
+    padding: 20px 0;
     border-bottom: 1px solid var(--border-chill);
   }
   .block:last-child { border-bottom: none; }
@@ -423,7 +610,7 @@
   @media print {
     body { background: #fff; color: #000; }
     .dino-item { border-bottom: 1px solid #ccc; }
-    .tab-button, .search-input, .btn, .detail-back { display: none; }
+    .tab-button, .search-input, .btn, .detail-back, .detail-star, .filter-chip { display: none; }
     .tab-content { display: block !important; }
     .detail-view { display: block !important; }
   }
@@ -442,26 +629,30 @@
 </script>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to main content</a>
 <div class="container">
   <header>
     <h1>RexDex</h1>
-    <p>ARK Creature Index — all story islands, all dinos</p>
+    <h2>ARK Creature Index — all story islands, all dinos</h2>
     <div class="controls-wrapper">
       <input type="text" id="searchInput" class="search-input" placeholder="Search dinos by name..." aria-label="Search dinos" autocomplete="off" enterkeyhint="search">
       <button type="button" class="btn btn-primary" id="searchBtn" aria-label="Search dinos">
-        Search
+        <span class="sr-only">Search</span>
+        <span aria-hidden="true">Search</span>
       </button>
     </div>
-    <div id="statusMessage" class="status-message" role="status" aria-live="polite"></div>
+    <div id="statusMessage" class="status-message" role="status" aria-live="polite" aria-atomic="true"></div>
   </header>
 
-  <nav id="tabsHeader" role="tablist" aria-label="ARK story islands"></nav>
-  <div id="tabsContent"></div>
-  <div id="searchView" class="tab-content" style="display:none;">
-    <div id="searchResultsHeader" class="search-results-header"></div>
-    <div id="searchResultsList" class="dino-list"></div>
-  </div>
-  <div id="detailView" class="detail-view"></div>
+  <main id="main">
+    <nav id="tabsHeader" role="tablist" aria-label="ARK story islands"></nav>
+    <div id="tabsContent"></div>
+    <div id="searchView" class="tab-content" style="display:none;">
+      <div id="searchResultsHeader" class="search-results-header"></div>
+      <div id="searchResultsList" class="dino-list"></div>
+    </div>
+    <div id="detailView" class="detail-view"></div>
+  </main>
 </div>
 
 <script>
@@ -640,7 +831,21 @@
   let currentIsland = ISLANDS[0];
   let currentDino = null;
   let cameFromSearch = false;
+  let cameFromTracker = false;
   let ignoreNextHashChange = false;
+
+  const TRACKER_KEY = 'rexdex_tracker';
+  const MAX_TRACKED = 30;
+
+  // Per-island filter state
+  const FILTER_STATE = {};
+  ISLANDS.forEach(function(island) {
+    FILTER_STATE[island] = { diet: 'All', tame: 'All', ride: 'All' };
+  });
+
+  const DIET_OPTIONS = ['All','Herbivore','Carnivore','Omnivore','Mineral','None'];
+  const TAME_OPTIONS = ['All','Passive','Knockout','Special','Craft','Hack','None'];
+  const RIDE_OPTIONS = ['All','Yes','No'];
 
   const getElement = function(id) { return document.getElementById(id); };
   const tabsHeader = getElement('tabsHeader');
@@ -663,14 +868,16 @@
 
   function updateSearchButton() {
     if (searchInput.value.trim()) {
-      searchBtn.textContent = 'Clear';
+      searchBtn.querySelector('span[aria-hidden]').textContent = 'Clear';
+      searchBtn.setAttribute('aria-label', 'Clear search');
       searchBtn.onclick = function() {
         searchInput.value = '';
         searchInput.focus();
         performSearch('');
       };
     } else {
-      searchBtn.textContent = 'Search';
+      searchBtn.querySelector('span[aria-hidden]').textContent = 'Search';
+      searchBtn.setAttribute('aria-label', 'Search dinos');
       searchBtn.onclick = window.handleSearch;
     }
   }
@@ -678,9 +885,9 @@
   function setHash(hash) {
     ignoreNextHashChange = true;
     if (hash) {
-      history.replaceState(null, null, '#' + hash);
+      location.hash = '#' + hash;
     } else {
-      history.replaceState(null, null, location.pathname + location.search);
+      location.hash = '';
     }
     setTimeout(function() { ignoreNextHashChange = false; }, 50);
   }
@@ -693,6 +900,7 @@
     tabsHeader.style.display = 'flex';
     clearStatus();
     cameFromSearch = false;
+    cameFromTracker = false;
   }
 
   function showSearchView(results, query) {
@@ -729,6 +937,7 @@
 
       item.onclick = function() {
         cameFromSearch = true;
+        cameFromTracker = false;
         currentIsland = result.island;
         showDinoDetail(result.dino);
       };
@@ -736,6 +945,7 @@
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           cameFromSearch = true;
+          cameFromTracker = false;
           currentIsland = result.island;
           showDinoDetail(result.dino);
         }
@@ -750,15 +960,18 @@
       const buttons = tabsHeader.querySelectorAll('.tab-button');
       const panels = tabsContent.querySelectorAll('.tab-content');
       buttons.forEach(function(btn, idx) {
-        const active = ISLANDS[idx] === currentIsland;
+        const active = idx < ISLANDS.length && ISLANDS[idx] === currentIsland;
         btn.classList.toggle('active', active);
         btn.setAttribute('aria-selected', active ? 'true' : 'false');
         btn.setAttribute('tabindex', active ? '0' : '-1');
       });
       panels.forEach(function(panel, idx) {
-        const active = ISLANDS[idx] === currentIsland;
+        const active = idx < ISLANDS.length && ISLANDS[idx] === currentIsland;
         panel.classList.toggle('active', active);
-        if (active) renderDinoList(panel, DINOS[currentIsland]);
+        if (active && idx < ISLANDS.length) {
+          renderDinoList(panel, DINOS[currentIsland]);
+          renderFilters(panel, currentIsland);
+        }
       });
       setHash(encodeURIComponent(currentIsland));
       updateSearchButton();
@@ -777,6 +990,174 @@
     showSearchView(found, query);
     setHash('search=' + encodeURIComponent(query));
     updateSearchButton();
+  }
+
+  function getTrackedList() {
+    try {
+      var data = JSON.parse(localStorage.getItem(TRACKER_KEY));
+      return Array.isArray(data) ? data : [];
+    } catch(e) { return []; }
+  }
+
+  function saveTrackedList(list) {
+    localStorage.setItem(TRACKER_KEY, JSON.stringify(list.slice(0, MAX_TRACKED)));
+  }
+
+  function isTracked(dinoName, islandName) {
+    return getTrackedList().some(function(item) {
+      return item.name === dinoName && item.island === islandName;
+    });
+  }
+
+  window.toggleTrackDino = function() {
+    if (!currentDino) return;
+    var dino = currentDino;
+    var island = currentIsland;
+    var list = getTrackedList();
+    var idx = list.findIndex(function(item) { return item.name === dino.name && item.island === island; });
+
+    if (idx >= 0) {
+      list.splice(idx, 1);
+      showStatus('Removed ' + dino.name + ' from tracker', 'loading');
+    } else {
+      if (list.length >= MAX_TRACKED) {
+        showStatus('Tracker full (max 30 dinos)', 'error');
+        return;
+      }
+      list.push({name: dino.name, island: island});
+      showStatus('Added ' + dino.name + ' to tracker', 'loading');
+    }
+    saveTrackedList(list);
+    _showDinoDetail(dino);
+    var trackerPanel = getElement('tabpanel-tracker');
+    if (trackerPanel && trackerPanel.classList.contains('active')) {
+      renderTrackerList(trackerPanel);
+    }
+  };
+
+  function renderTrackerList(container) {
+    container.innerHTML = '';
+    var list = document.createElement('div');
+    list.className = 'dino-list';
+
+    var tracked = getTrackedList();
+
+    if (tracked.length === 0) {
+      var empty = document.createElement('div');
+      empty.className = 'dino-item';
+      empty.style.cursor = 'default';
+      empty.style.opacity = '0.6';
+      empty.innerHTML = '<div class="dino-desc" style="text-align:center;padding:40px 0;">No dinosaurs tracked yet.<br>Visit a dino page and tap the star to track it.</div>';
+      list.appendChild(empty);
+      container.appendChild(list);
+      return;
+    }
+
+    tracked.forEach(function(item) {
+      var island = item.island;
+      var dinoList = DINOS[island];
+      if (!dinoList) return;
+      var dino = dinoList.find(function(d) { return d.name === item.name; });
+      if (!dino) return;
+
+      var dinoItem = document.createElement('div');
+      dinoItem.className = 'dino-item';
+      dinoItem.setAttribute('tabindex', '0');
+      dinoItem.setAttribute('role', 'button');
+      dinoItem.setAttribute('aria-label', dino.name + ', ' + dino.diet + ', ' + dino.tame + ' tame');
+      dinoItem.innerHTML =
+        '<div class="dino-name">' + dino.name + '</div>' +
+        '<div class="dino-meta">' +
+          getDietTag(dino.diet) +
+          getTameTag(dino.tame) +
+          getRideTag(dino.ride) +
+          '<span class="tag tag-info">' + island + '</span>' +
+        '</div>' +
+        '<div class="dino-desc">' + dino.desc + '</div>';
+
+      dinoItem.onclick = function() {
+        cameFromSearch = false;
+        cameFromTracker = true;
+        currentIsland = island;
+        showDinoDetail(dino);
+      };
+      dinoItem.onkeydown = function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          cameFromSearch = false;
+          cameFromTracker = true;
+          currentIsland = island;
+          showDinoDetail(dino);
+        }
+      };
+      list.appendChild(dinoItem);
+    });
+
+    container.appendChild(list);
+  }
+
+  function renderFilters(container, island) {
+    var existing = container.querySelector('.filter-panel');
+    if (existing) existing.remove();
+
+    // Count active filters for the summary badge
+    var activeCount = 0;
+    if (FILTER_STATE[island].diet !== 'All') activeCount++;
+    if (FILTER_STATE[island].tame !== 'All') activeCount++;
+    if (FILTER_STATE[island].ride !== 'All') activeCount++;
+
+    var details = document.createElement('details');
+    details.className = 'filter-panel';
+
+    // Build summary using DOM methods to ensure proper parsing
+    var summary = document.createElement('summary');
+
+    var labelSpan = document.createElement('span');
+    labelSpan.className = 'summary-label';
+    labelSpan.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg> Filters' + (activeCount > 0 ? ' <span style="color:var(--primary);">(' + activeCount + ')</span>' : '');
+
+    var iconSpan = document.createElement('span');
+    iconSpan.className = 'summary-icon';
+    iconSpan.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+
+    summary.appendChild(labelSpan);
+    summary.appendChild(iconSpan);
+
+    var body = document.createElement('div');
+    body.className = 'filter-body';
+    body.setAttribute('role', 'group');
+    body.setAttribute('aria-label', 'Filter dinos for ' + island);
+
+    function makeGroup(label, options, category) {
+      var group = document.createElement('div');
+      group.className = 'filter-row';
+      var lbl = document.createElement('span');
+      lbl.className = 'filter-label';
+      lbl.textContent = label;
+      group.appendChild(lbl);
+      options.forEach(function(opt) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'filter-chip';
+        btn.textContent = opt;
+        btn.setAttribute('aria-pressed', FILTER_STATE[island][category] === opt ? 'true' : 'false');
+        btn.onclick = function() {
+          FILTER_STATE[island][category] = opt;
+          renderFilters(container, island);
+          renderDinoList(container, DINOS[island]);
+        };
+        group.appendChild(btn);
+      });
+      return group;
+    }
+
+    body.appendChild(makeGroup('Diet', DIET_OPTIONS, 'diet'));
+    body.appendChild(makeGroup('Tame', TAME_OPTIONS, 'tame'));
+    body.appendChild(makeGroup('Ride', RIDE_OPTIONS, 'ride'));
+
+    details.appendChild(summary);
+    details.appendChild(body);
+    container.insertBefore(details, container.firstChild);
   }
 
   function renderTabs() {
@@ -805,33 +1186,66 @@
       tabsContent.appendChild(panel);
     });
 
+    var trackerBtn = document.createElement('button');
+    trackerBtn.type = 'button';
+    trackerBtn.className = 'tab-button';
+    trackerBtn.setAttribute('role', 'tab');
+    trackerBtn.setAttribute('aria-selected', 'false');
+    trackerBtn.setAttribute('aria-controls', 'tabpanel-tracker');
+    trackerBtn.setAttribute('tabindex', '-1');
+    trackerBtn.id = 'tab-tracker';
+    trackerBtn.textContent = 'Tracker';
+    trackerBtn.onclick = function() { switchTab(ISLANDS.length); };
+    tabsHeader.appendChild(trackerBtn);
+
+    var trackerPanel = document.createElement('div');
+    trackerPanel.className = 'tab-content';
+    trackerPanel.id = 'tabpanel-tracker';
+    trackerPanel.setAttribute('role', 'tabpanel');
+    trackerPanel.setAttribute('aria-labelledby', 'tab-tracker');
+    tabsContent.appendChild(trackerPanel);
+
     if (ISLANDS.length > 0) {
+      renderFilters(tabsContent.firstElementChild, ISLANDS[0]);
       renderDinoList(tabsContent.firstElementChild, DINOS[ISLANDS[0]]);
     }
   }
 
-  function switchTab(index) {
-    const buttons = tabsHeader.querySelectorAll('.tab-button');
-    const panels = tabsContent.querySelectorAll('.tab-content');
+  function _switchTab(index) {
+    var buttons = tabsHeader.querySelectorAll('.tab-button');
+    var panels = tabsContent.querySelectorAll('.tab-content');
 
     buttons.forEach(function(btn, idx) {
-      const active = idx === index;
+      var active = idx === index;
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-selected', active ? 'true' : 'false');
       btn.setAttribute('tabindex', active ? '0' : '-1');
     });
 
     panels.forEach(function(panel, idx) {
-      const active = idx === index;
+      var active = idx === index;
       panel.classList.toggle('active', active);
       if (active) {
-        currentIsland = ISLANDS[idx];
-        renderDinoList(panel, DINOS[currentIsland]);
+        if (idx < ISLANDS.length) {
+          currentIsland = ISLANDS[idx];
+          renderFilters(panel, currentIsland);
+          renderDinoList(panel, DINOS[currentIsland]);
+        } else {
+          renderTrackerList(panel);
+        }
       }
     });
 
     hideDetail();
-    setHash(encodeURIComponent(ISLANDS[index]));
+  }
+
+  function switchTab(index) {
+    _switchTab(index);
+    if (index < ISLANDS.length) {
+      setHash(encodeURIComponent(ISLANDS[index]));
+    } else {
+      setHash('tracker');
+    }
   }
 
   function getDietTag(diet) {
@@ -857,11 +1271,34 @@
   }
 
   function renderDinoList(container, dinoList) {
-    container.innerHTML = '';
+    // Remove existing dino-list if any (but keep filter-panel)
+    var existing = container.querySelector('.dino-list');
+    if (existing) existing.remove();
+
+    var island = currentIsland;
+    var filters = FILTER_STATE[island] || { diet: 'All', tame: 'All', ride: 'All' };
+
+    var filtered = dinoList.filter(function(dino) {
+      return (filters.diet === 'All' || dino.diet === filters.diet) &&
+             (filters.tame === 'All' || dino.tame === filters.tame) &&
+             (filters.ride === 'All' || dino.ride === filters.ride);
+    });
+
     const list = document.createElement('div');
     list.className = 'dino-list';
 
-    dinoList.forEach(function(dino) {
+    if (filtered.length === 0) {
+      var empty = document.createElement('div');
+      empty.className = 'dino-item';
+      empty.style.cursor = 'default';
+      empty.style.opacity = '0.6';
+      empty.innerHTML = '<div class="dino-desc" style="text-align:center;padding:40px 0;">No creatures match the selected filters.<br>Try adjusting the filter chips above.</div>';
+      list.appendChild(empty);
+      container.appendChild(list);
+      return;
+    }
+
+    filtered.forEach(function(dino) {
       const item = document.createElement('div');
       item.className = 'dino-item';
       item.setAttribute('tabindex', '0');
@@ -876,10 +1313,16 @@
         '</div>' +
         '<div class="dino-desc">' + dino.desc + '</div>';
 
-      item.onclick = function() { showDinoDetail(dino); };
+      item.onclick = function() {
+        cameFromSearch = false;
+        cameFromTracker = false;
+        showDinoDetail(dino);
+      };
       item.onkeydown = function(e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
+          cameFromSearch = false;
+          cameFromTracker = false;
           showDinoDetail(dino);
         }
       };
@@ -889,18 +1332,22 @@
     container.appendChild(list);
   }
 
-  function showDinoDetail(dino) {
+  function _showDinoDetail(dino) {
     currentDino = dino;
     tabsContent.style.display = 'none';
     tabsHeader.style.display = 'none';
     searchView.style.display = 'none';
     detailView.classList.add('active');
 
+    var isStarred = isTracked(dino.name, currentIsland);
+    var starLabel = isStarred ? 'Remove from tracker' : 'Add to tracker';
+    var starChar = isStarred ? '★' : '☆';
+
     var tameBlock = '';
     if (dino.tameTips) {
       tameBlock =
         '<div class="block">' +
-          '<div class="block-label">Taming Tips</div>' +
+          '<h3 class="block-label">Taming Tips</h3>' +
           '<div class="detail-desc">' + dino.tameTips + '</div>' +
         '</div>';
     }
@@ -908,15 +1355,18 @@
     detailView.innerHTML =
       '<div class="detail-header">' +
         '<button type="button" class="detail-back" onclick="window.goBack()" aria-label="Back to previous view">' +
-          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;">' +
+          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="vertical-align:middle;margin-right:6px;">' +
             '<path d="M19 12H5M12 19l-7-7 7-7"/>' +
           '</svg>' +
           'Back' +
         '</button>' +
+        '<button type="button" class="detail-star" onclick="window.toggleTrackDino()" aria-label="' + starLabel + '" aria-pressed="' + (isStarred ? 'true' : 'false') + '">' +
+          '<span aria-hidden="true">' + starChar + '</span>' +
+        '</button>' +
       '</div>' +
 
       '<div class="block" style="padding-top:0;">' +
-        '<div class="hero-name">' + dino.name + '</div>' +
+        '<h2 class="hero-name">' + dino.name + '</h2>' +
         '<div class="hero-meta">' +
           '<span>' + getDietTag(dino.diet) + '</span>' +
           '<span class="divider">/</span>' +
@@ -927,7 +1377,7 @@
       '</div>' +
 
       '<div class="block">' +
-        '<div class="block-label">Basic Info</div>' +
+        '<h3 class="block-label">Basic Info</h3>' +
         '<div class="data-row"><span class="label">Diet</span><span class="value">' + dino.diet + '</span></div>' +
         '<div class="data-row"><span class="label">Tame Method</span><span class="value">' + dino.tame + '</span></div>' +
         '<div class="data-row"><span class="label">Rideable</span><span class="value">' + dino.ride + '</span></div>' +
@@ -935,7 +1385,7 @@
       '</div>' +
 
       '<div class="block">' +
-        '<div class="block-label">Base Stats (Level 1)</div>' +
+        '<h3 class="block-label">Base Stats (Level 1)</h3>' +
         '<div class="data-row"><span class="label">Health</span><span class="value">' + (dino.health || '—') + '</span></div>' +
         '<div class="data-row"><span class="label">Stamina</span><span class="value">' + (dino.stamina || '—') + '</span></div>' +
         '<div class="data-row"><span class="label">Oxygen</span><span class="value">' + (dino.oxygen || '—') + '</span></div>' +
@@ -945,7 +1395,7 @@
       '</div>' +
 
       '<div class="block">' +
-        '<div class="block-label">Tags</div>' +
+        '<h3 class="block-label">Tags</h3>' +
         '<div class="tag-row">' +
           getDietTag(dino.diet) +
           getTameTag(dino.tame) +
@@ -956,16 +1406,22 @@
       tameBlock +
 
       '<div class="block">' +
-        '<div class="block-label">Description</div>' +
+        '<h3 class="block-label">Description</h3>' +
         '<div class="detail-desc">' + dino.desc + '</div>' +
       '</div>';
+  }
 
+  function showDinoDetail(dino) {
+    _showDinoDetail(dino);
     setHash(encodeURIComponent(currentIsland) + '/' + encodeURIComponent(dino.name));
   }
 
   window.goBack = function() {
     if (cameFromSearch && searchInput.value.trim()) {
       performSearch(searchInput.value.trim().toLowerCase());
+    } else if (cameFromTracker) {
+      _switchTab(ISLANDS.length);
+      setHash('tracker');
     } else {
       showIslandView();
       setHash(encodeURIComponent(currentIsland));
@@ -980,6 +1436,7 @@
     searchView.style.display = 'none';
     currentDino = null;
     cameFromSearch = false;
+    cameFromTracker = false;
   }
 
   window.handleSearch = function() {
@@ -1034,6 +1491,11 @@
     var islandName = parts[0];
     var dinoName = parts[1] || '';
 
+    if (islandName === 'tracker') {
+      _switchTab(ISLANDS.length);
+      return;
+    }
+
     var islandIdx = ISLANDS.indexOf(islandName);
     if (islandIdx === -1) {
       islandIdx = 0;
@@ -1042,27 +1504,15 @@
     currentIsland = islandName;
 
     if (dinoName) {
-      var dino = DINOS[islandName].find(function(d) { return d.name === dinoName; });
+      var dino = DINOS[islandName] && DINOS[islandName].find(function(d) { return d.name === dinoName; });
       if (dino) {
-        const buttons = tabsHeader.querySelectorAll('.tab-button');
-        const panels = tabsContent.querySelectorAll('.tab-content');
-        buttons.forEach(function(btn, idx) {
-          var active = idx === islandIdx;
-          btn.classList.toggle('active', active);
-          btn.setAttribute('aria-selected', active ? 'true' : 'false');
-          btn.setAttribute('tabindex', active ? '0' : '-1');
-        });
-        panels.forEach(function(panel, idx) {
-          var active = idx === islandIdx;
-          panel.classList.toggle('active', active);
-          if (active) renderDinoList(panel, DINOS[ISLANDS[idx]]);
-        });
-        showDinoDetail(dino);
+        _switchTab(islandIdx);
+        _showDinoDetail(dino);
         return;
       }
     }
 
-    switchTab(islandIdx);
+    _switchTab(islandIdx);
   }
 
   window.addEventListener('hashchange', parseHash);
@@ -1081,9 +1531,9 @@
 
   renderTabs();
   updateSearchButton();
+
   parseHash();
 })();
-
 </script>
 </body>
 </html>
