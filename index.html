@@ -376,6 +376,30 @@
     border-color: #d99010;
   }
 
+  .filter-reset {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid rgba(255,100,100,0.25);
+    background: rgba(255,100,100,0.08);
+    color: var(--accent3);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    min-height: 28px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    margin-left: auto;
+  }
+  .filter-reset:hover { background: rgba(255,100,100,0.15); border-color: rgba(255,100,100,0.4); }
+  .filter-reset:focus-visible { outline: 2px solid var(--accent3); outline-offset: 2px; }
+
   .dino-list {
     display: flex;
     flex-direction: column;
@@ -583,6 +607,14 @@
   }
   .search-results-header.no-results { color: var(--accent3); }
 
+  .dino-count {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: right;
+    padding: 8px 0 4px;
+    letter-spacing: 0.02em;
+  }
+
   .sr-only {
     position: absolute;
     width: 1px;
@@ -680,7 +712,7 @@
       {name:'Chalicotherium',diet:'Herbivore',tame:'Passive',ride:'Yes',desc:'Catapult attack throws rocks. Gathers berries. Requires beer to tame passively.',tameTips:'Passive tame with Beer (made in Beer Barrel). Must be level 36 to craft beer. Throws rocks — stay at range.',health:600,stamina:300,oxygen:30,food:10,weight:150,torpor:15},
       {name:'Cnidaria',diet:'None',tame:'None',ride:'No',desc:'Jellyfish. Cannot be tamed. Shock attack stuns and dismounts riders.'},
       {name:'Coelacanth',diet:'None',tame:'None',ride:'No',desc:'Basic fish. No utility. Kill for raw fish meat.'},
-      {name:'Compy',diet:'Carnivore',tame:'Knockout',ride:'No',desc:'Tiny pack hunter. Pack bonus increases damage. Shoulder pet that attacks nearby threats.',health:50,stamina:100,oxygen:10,food:10,weight:150,torpor:15},
+      {name:'Compy',diet:'Carnivore',tame:'Knockout',ride:'No',desc:'Tiny pack hunter. Pack bonus increases damage. Shoulder pet that attacks nearby threats.',tameTips:'Knockout with tranq arrows or fists. Very low health — be careful not to kill it. Raw Meat. Pack bonus makes them dangerous in groups.',health:50,stamina:100,oxygen:10,food:10,weight:150,torpor:15},
       {name:'Daeodon',diet:'Carnivore',tame:'Knockout',ride:'Yes',desc:'Healing aura restores health to all nearby allied dinos. Massive food drain when healing.',tameTips:'Knockout with tranq darts. Very high torpor drain — bring hundreds of narcotics. Iguanodon Kibble or Raw Mutton.',health:900,stamina:250,oxygen:25,food:10,weight:150,torpor:15},
       {name:'Dilophosaur',diet:'Carnivore',tame:'Knockout',ride:'No',desc:'Spits venom that blinds and slows enemies. Early game companion.',tameTips:'Knockout with tranq arrows or fists. Very easy early tame. Raw Meat. Spits venom — bring a shield.',health:130,stamina:100,oxygen:10,food:10,weight:150,torpor:15},
       {name:'Dimetrodon',diet:'Carnivore',tame:'Knockout',ride:'No',desc:'Sail-backed reptile that acts as a living air conditioner. Essential for egg incubation.',tameTips:'Knockout with tranq darts. Extremely high torpor drain — one of the worst in the game. Quetzal Kibble or Raw Mutton.',health:350,stamina:300,oxygen:30,food:10,weight:500,torpor:50},
@@ -693,18 +725,18 @@
       {name:'Doedicurus',diet:'Herbivore',tame:'Knockout',ride:'Yes',desc:'Best stone gatherer. Rolls into defensive ball. Essential for construction.',tameTips:'Knockout with tranq darts. It rolls into a ball when damaged — wait for it to unroll. Dilo Kibble or berries.',health:850,stamina:300,oxygen:30,food:10,weight:150,torpor:15},
       {name:'Dung Beetle',diet:'Omnivore',tame:'Passive',ride:'No',desc:'Converts feces into Fertilizer and Oil. Keep in small enclosure with poop.',tameTips:'Passive tame with feces or spoiled meat. Must be in a small enclosure or it will wander. Converts poop to fertilizer.',health:200,stamina:100,oxygen:10,food:10,weight:150,torpor:15},
       {name:'Dunkleosteus',diet:'Carnivore',tame:'Knockout',ride:'Yes',desc:'Armored fish that gathers oil, crystal, and metal. Breaks stone structures underwater.',tameTips:'Knockout underwater with tranq darts. Very tanky — bring lots of darts. Raw Prime Fish Meat.',health:710,stamina:200,oxygen:20,food:10,weight:150,torpor:15},
-      {name:'Electrophorus',diet:'Carnivore',tame:'Knockout',ride:'No',desc:'Electric eel pack. Shocks and dismounts riders. Immobilizes water mounts.',health:180,stamina:165,oxygen:16.5,food:10,weight:1050,torpor:105},
+      {name:'Electrophorus',diet:'Carnivore',tame:'Knockout',ride:'No',desc:'Electric eel pack. Shocks and dismounts riders. Immobilizes water mounts.',tameTips:'Knockout underwater with tranq darts. Travel in packs and shock on approach — clear the area first. Raw Fish Meat.',health:180,stamina:165,oxygen:16.5,food:10,weight:1050,torpor:105},
       {name:'Equus',diet:'Herbivore',tame:'Passive',ride:'Yes',desc:'Fast mount with lasso. Mortar and Pestle saddle. Kick attack. Early game transport.',tameTips:'Passive tame with Rockarrot or carrots. Ride it and feed while mounted. Lasso helps. Early game transport.',health:240,stamina:560,oxygen:56,food:10,weight:150,torpor:15},
       {name:'Eurypterid',diet:'None',tame:'None',ride:'No',desc:'Cannot be tamed. Kill for Black Pearls and chitin.'},
       {name:'Gallimimus',diet:'Herbivore',tame:'Knockout',ride:'Yes',desc:'Fastest land creature. Carries 3 players with saddle. No attack. Pure speed.',tameTips:'Knockout with tranq darts. Very fast — build a trap with ramps. Troodon Kibble or vegetables.',health:150,stamina:300,oxygen:30,food:10,weight:150,torpor:15},
-      {name:'Giant Bee',diet:'None',tame:'Passive',ride:'No',desc:'Destroy wild hive to get Queen. Turns into Beehive structure that produces Giant Bee Honey.',health:80,stamina:200,oxygen:20,food:10,weight:150,torpor:15},
-      {name:'Giganotosaurus',diet:'Carnivore',tame:'Knockout',ride:'Yes',desc:'Apex predator. Rage mode when damaged. Massive stats but loses rage = runs away.',health:80000,stamina:4000,oxygen:400,food:10,weight:150,torpor:15},
+      {name:'Giant Bee',diet:'None',tame:'Passive',ride:'No',desc:'Destroy wild hive to get Queen. Turns into Beehive structure that produces Giant Bee Honey.',tameTips:'Passive tame. Destroy the wild hive to get the Queen. Wear Ghillie and move slowly. No food needed — just interact with the Queen.',health:80,stamina:200,oxygen:20,food:10,weight:150,torpor:15},
+      {name:'Giganotosaurus',diet:'Carnivore',tame:'Knockout',ride:'Yes',desc:'Apex predator. Rage mode when damaged. Massive stats but loses rage = runs away.',tameTips:'Knockout with tranq darts. Massive torpor pool — hundreds of darts needed. Build a large trap with metal dino gates. Extraordinary Kibble or Raw Mutton. Rage mode triggers when hit — be careful not to over-damage.',health:80000,stamina:4000,oxygen:400,food:10,weight:150,torpor:15},
       {name:'Gigantopithecus',diet:'Herbivore',tame:'Passive',ride:'Yes',desc:'Bigfoot that gathers fiber. Throws rider when angry. Passively tamed with berries.',tameTips:'Passive tame with berries. Do NOT touch it or wear armor — it will attack. Feed from behind.',health:640,stamina:300,oxygen:30,food:10,weight:150,torpor:15},
       {name:'Hesperornis',diet:'Carnivore',tame:'Passive',ride:'No',desc:'Duck that produces Golden Eggs when fed fish. Also gives Organic Polymer.',tameTips:'Passive tame by dragging dead fish to it. Produces Golden Eggs when fed fish regularly.',health:95,stamina:200,oxygen:20,food:10,weight:150,torpor:15},
       {name:'Hyaenodon',diet:'Carnivore',tame:'Passive',ride:'No',desc:'Pack hunter with saddlebags that act as refrigerator. Must be separated to tame individually.',tameTips:'Passive tame with Raw Mutton. Must wear Ghillie, separate from pack, and pet from behind. Saddlebags act as fridge.',health:175,stamina:260,oxygen:26,food:10,weight:150,torpor:15},
       {name:'Ichthyosaurus',diet:'Carnivore',tame:'Passive',ride:'Yes',desc:'Friendly dolphin. Fast swimmer. No knockback. Eats fish from hand.',tameTips:'Passive tame with meat. Just swim up to it and feed. Friendly — will not run.',health:275,stamina:300,oxygen:60,food:20,weight:150,torpor:15},
       {name:'Iguanodon',diet:'Herbivore',tame:'Knockout',ride:'Yes',desc:'Bipedal/quadrupedal toggle. Converts berries to seeds. Good berry gatherer.',tameTips:'Knockout with tranq darts. Easy mid-game tame. Microraptor Kibble or berries. Can switch stance.',health:250,stamina:200,oxygen:20,food:10,weight:150,torpor:15},
-      {name:'Kairuku',diet:'Carnivore',tame:'Passive',ride:'No',desc:'Penguin that provides hypothermic insulation. Gives Organic Polymer when killed.',health:95,stamina:200,oxygen:20,food:10,weight:150,torpor:15},
+      {name:'Kairuku',diet:'Carnivore',tame:'Passive',ride:'No',desc:'Penguin that provides hypothermic insulation. Gives Organic Polymer when killed.',tameTips:'Passive tame with Raw Fish Meat or Raw Meat. Harmless and easy. Found in snow biome. Best killed for Organic Polymer rather than tamed.',health:95,stamina:200,oxygen:20,food:10,weight:150,torpor:15},
       {name:'Kaprosuchus',diet:'Carnivore',tame:'Knockout',ride:'Yes',desc:'Leaping attack grabs small dinos and players. Fast on land and water.',tameTips:'Knockout with tranq darts. Fast leaper — build a trap. Tapejara Kibble or Raw Mutton.',health:200,stamina:350,oxygen:35,food:10,weight:150,torpor:15},
       {name:'Kentrosaurus',diet:'Herbivore',tame:'Knockout',ride:'No',desc:'Spiked tail deals armor-piercing recoil damage. Harvests thatch and wood.',tameTips:'Knockout with tranq arrows. Regular Kibble or crops. Tail spikes deal armor-piercing recoil.',health:650,stamina:300,oxygen:30,food:10,weight:150,torpor:15},
       {name:'Leech',diet:'None',tame:'None',ride:'No',desc:'Parasite that attaches to player/dino. Diseased variant exists. Remove with fire or knife.',health:40,stamina:100,oxygen:10,food:10,weight:150,torpor:15},
@@ -720,7 +752,7 @@
       {name:'Meganeura',diet:'None',tame:'None',ride:'No',desc:'Giant dragonfly. Cannot be tamed. Kill for chitin.',health:45,stamina:100,oxygen:10,food:10,weight:150,torpor:15},
       {name:'Megatherium',diet:'Omnivore',tame:'Knockout',ride:'Yes',desc:'Giant sloth. Bug killer buff increases damage against insects massively. Chitin gatherer.',tameTips:'Knockout with tranq darts. Megalania Kibble or Raw Mutton. Bug killer buff makes it a cave monster.',health:740,stamina:400,oxygen:40,food:10,weight:270,torpor:27},
       {name:'Mesopithecus',diet:'Herbivore',tame:'Passive',ride:'No',desc:'Monkey shoulder pet. Warns of danger. Can open doors. Small backpack.',tameTips:'Passive tame with berries. Very skittish — use Ghillie. Shoulder pet that warns of danger.',health:115,stamina:100,oxygen:10,food:10,weight:150,torpor:15},
-      {name:'Microraptor',diet:'Carnivore',tame:'Knockout',ride:'No',desc:'Stuns and knocks players off mounts. Fast and annoying. Pack hunter.',health:130,stamina:100,oxygen:10,food:10,weight:150,torpor:15},
+      {name:'Microraptor',diet:'Carnivore',tame:'Knockout',ride:'No',desc:'Stuns and knocks players off mounts. Fast and annoying. Pack hunter.',tameTips:'Knockout with tranq arrows. Low health — easy to kill by accident. Raw Meat. Pounce attack dismounts riders. Best tamed solo, away from the pack.',health:130,stamina:100,oxygen:10,food:10,weight:150,torpor:15},
       {name:'Mosasaurus',diet:'Carnivore',tame:'Knockout',ride:'Yes',desc:'Apex ocean predator. Platform saddle. Highest health and damage in water.',tameTips:'Knockout underwater with tranq darts. Quetzal Kibble or Raw Mutton. Highest water health/damage.',health:3600,stamina:400,oxygen:40,food:10,weight:150,torpor:15},
       {name:'Moschops',diet:'Omnivore',tame:'Passive',ride:'Yes',desc:'Harvests everything based on what you feed it. Runs away when attacked. Very versatile.',tameTips:'Passive tame — it requests random foods (berries, meat, prime, kibble). Just feed what it wants.',health:375,stamina:300,oxygen:30,food:10,weight:150,torpor:22.5},
       {name:'Onyc',diet:'Carnivore',tame:'Knockout',ride:'No',desc:'Giant bat. Destroys armor quickly. Hangs from ceilings. Cannot be ridden.',tameTips:'Knockout in a cave with Raw Meat. Very low torpor. Destroys armor quickly.',health:250,stamina:100,oxygen:10,food:10,weight:150,torpor:15},
@@ -856,9 +888,15 @@
   const searchBtn = getElement('searchBtn');
   const statusEl = getElement('statusMessage');
 
+  var statusTimer = null;
   function showStatus(msg, type) {
     statusEl.textContent = msg;
     statusEl.className = 'status-message show status-' + type;
+    if (statusTimer) clearTimeout(statusTimer);
+    statusTimer = setTimeout(function() {
+      clearStatus();
+      statusTimer = null;
+    }, 2000);
   }
 
   function clearStatus() {
@@ -1155,9 +1193,42 @@
     body.appendChild(makeGroup('Tame', TAME_OPTIONS, 'tame'));
     body.appendChild(makeGroup('Ride', RIDE_OPTIONS, 'ride'));
 
+    if (activeCount > 0) {
+      var resetRow = document.createElement('div');
+      resetRow.className = 'filter-row';
+      var resetBtn = document.createElement('button');
+      resetBtn.type = 'button';
+      resetBtn.className = 'filter-reset';
+      resetBtn.textContent = 'Reset filters';
+      resetBtn.onclick = function() {
+        FILTER_STATE[island].diet = 'All';
+        FILTER_STATE[island].tame = 'All';
+        FILTER_STATE[island].ride = 'All';
+        renderFilters(container, island);
+        renderDinoList(container, DINOS[island]);
+      };
+      resetRow.appendChild(resetBtn);
+      body.appendChild(resetRow);
+    }
+
     details.appendChild(summary);
     details.appendChild(body);
     container.insertBefore(details, container.firstChild);
+
+    // Dino count label
+    var existingCount = container.querySelector('.dino-count');
+    if (existingCount) existingCount.remove();
+    var filters = FILTER_STATE[island] || { diet: 'All', tame: 'All', ride: 'All' };
+    var total = DINOS[island] ? DINOS[island].length : 0;
+    var showing = DINOS[island] ? DINOS[island].filter(function(d) {
+      return (filters.diet === 'All' || d.diet === filters.diet) &&
+             (filters.tame === 'All' || d.tame === filters.tame) &&
+             (filters.ride === 'All' || d.ride === filters.ride);
+    }).length : 0;
+    var countEl = document.createElement('div');
+    countEl.className = 'dino-count';
+    countEl.textContent = activeCount > 0 ? 'Showing ' + showing + ' of ' + total : total + ' creatures';
+    container.insertBefore(countEl, details.nextSibling);
   }
 
   function renderTabs() {
@@ -1220,6 +1291,18 @@
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-selected', active ? 'true' : 'false');
       btn.setAttribute('tabindex', active ? '0' : '-1');
+      if (active) {
+        // Scroll tab button into view within the tab bar only, don't affect page scroll
+        var btnLeft = btn.offsetLeft;
+        var btnWidth = btn.offsetWidth;
+        var barScrollLeft = tabsHeader.scrollLeft;
+        var barWidth = tabsHeader.offsetWidth;
+        if (btnLeft < barScrollLeft) {
+          tabsHeader.scrollLeft = btnLeft - 8;
+        } else if (btnLeft + btnWidth > barScrollLeft + barWidth) {
+          tabsHeader.scrollLeft = btnLeft + btnWidth - barWidth + 8;
+        }
+      }
     });
 
     panels.forEach(function(panel, idx) {
@@ -1332,12 +1415,18 @@
     container.appendChild(list);
   }
 
+  var savedScrollY = 0;
+  var savedDinoName = null;
+
   function _showDinoDetail(dino) {
     currentDino = dino;
+    savedScrollY = window.scrollY;
+    savedDinoName = dino.name;
     tabsContent.style.display = 'none';
     tabsHeader.style.display = 'none';
     searchView.style.display = 'none';
     detailView.classList.add('active');
+    window.scrollTo(0, 0);
 
     var isStarred = isTracked(dino.name, currentIsland);
     var starLabel = isStarred ? 'Remove from tracker' : 'Add to tracker';
@@ -1425,6 +1514,19 @@
     } else {
       showIslandView();
       setHash(encodeURIComponent(currentIsland));
+      if (savedDinoName) {
+        var items = document.querySelectorAll('.dino-item');
+        for (var i = 0; i < items.length; i++) {
+          var nameEl = items[i].querySelector('.dino-name');
+          if (nameEl && nameEl.textContent === savedDinoName) {
+            var rect = items[i].getBoundingClientRect();
+            var offset = window.scrollY + rect.top - 80;
+            window.scrollTo(0, Math.max(0, offset));
+            break;
+          }
+        }
+        savedDinoName = null;
+      }
     }
   };
 
@@ -1533,6 +1635,60 @@
   updateSearchButton();
 
   parseHash();
+
+  // Swipe navigation
+  (function() {
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var SWIPE_THRESHOLD = 60;
+    var AXIS_LOCK = 30;
+
+    var touchStartedInMain = false;
+    var mainEl = document.getElementById('main');
+
+    document.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchStartedInMain = mainEl && mainEl.contains(e.target) && !tabsHeader.contains(e.target);
+    }, { passive: true });
+
+    document.addEventListener('touchend', function(e) {
+      if (!touchStartedInMain) return;
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      var dy = e.changedTouches[0].clientY - touchStartY;
+
+      // Ignore mostly-vertical swipes (scrolling)
+      if (Math.abs(dy) > AXIS_LOCK && Math.abs(dy) > Math.abs(dx)) return;
+      if (Math.abs(dx) < SWIPE_THRESHOLD) return;
+
+      var inDetail = detailView.classList.contains('active');
+
+      if (inDetail) {
+        // Swipe right on detail = go back
+        if (dx > 0) window.goBack();
+        return;
+      }
+
+      // Swipe left/right on island list = change tab
+      var buttons = Array.from(tabsHeader.querySelectorAll('.tab-button'));
+      var currentIdx = buttons.findIndex(function(b) { return b.classList.contains('active'); });
+      if (currentIdx === -1) return;
+
+      var nextIdx;
+      if (dx < 0) {
+        // swipe left = next island
+        nextIdx = currentIdx + 1;
+      } else {
+        // swipe right = previous island
+        nextIdx = currentIdx - 1;
+      }
+
+      if (nextIdx >= 0 && nextIdx < buttons.length) {
+        switchTab(nextIdx);
+      }
+    }, { passive: true });
+  })();
+
 })();
 </script>
 </body>
